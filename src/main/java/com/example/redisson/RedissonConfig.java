@@ -24,9 +24,6 @@ public class RedissonConfig {
     RedissonNodeConfig nodeConfig = new RedissonNodeConfig(config);
     nodeConfig.setExecutorServiceWorkers(Collections.singletonMap(EXECUTOR_NAME, 1));
     nodeConfig.setBeanFactory(beanFactory);
-
-    nodeConfig.setCodec(new MarshallingCodec(this.getClass().getClassLoader()));
-
     RedissonNode node = RedissonNode.create(nodeConfig);
     node.start();
     return node;
@@ -37,11 +34,7 @@ public class RedissonConfig {
     Config config = new Config();
     config.useSingleServer()
         .setAddress("redis://127.0.0.1:6379");
-
-    config.setCodec(new MarshallingCodec(this.getClass().getClassLoader()));
-
-    RedissonClient redisson = Redisson.create(config);
-    return redisson;
+    return Redisson.create(config);
   }
 
 }
