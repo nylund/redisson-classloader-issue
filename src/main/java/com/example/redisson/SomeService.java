@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SomeService {
 
-  void doSomething() {
+  public void doSomething() {
     System.out.println("Hello");
   }
 
